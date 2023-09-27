@@ -7,7 +7,7 @@
       </q-card-section>
 
       <q-card-section>
-       jkhjhjkhkjh khjkhkjhjkh kjhjkh khkj hkj h kjh kjh kjhkj hjkhk hkjh 
+       {{ store.count }}
       </q-card-section>
 
       <q-separator dark />
@@ -20,3 +20,8 @@
     <q-btn label="Merge" />
   </div>
 </template>
+<script setup>
+import { useCounterStore } from '@/stores/counterStore'
+
+let store = useCounterStore()
+</script>
