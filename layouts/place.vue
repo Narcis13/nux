@@ -4,8 +4,8 @@
       You have lost connection to the internet. This app is offline.
 
       <template v-slot:action>
-        <q-btn flat label="Autentificare" to="./autentificare"/>
-        <q-btn flat label="Inregistrare " to="./inregistrare" />
+        <q-btn flat label="Autentificare" @click="navigateTo('/place/autentificare')"/>
+        <q-btn flat label="Inregistrare " @click="navigateTo('/place/inregistrare')" />
       </template>
     </q-banner>
     <slot />
