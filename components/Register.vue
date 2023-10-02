@@ -3,8 +3,15 @@ let nume=ref('')
 let parola=ref('')
 let eAdmin = ref(false)
 
-function salveazaUtilizator(){
+async function salveazaUtilizator(){
   console.log("utilizator", nume.value,parola.value,eAdmin.value)
+  await $fetch("/api/place/utilizatornou", {
+        method: "POST",
+        headers: {
+         
+        },
+        body: {},
+      });
   navigateTo("../place")
 }
 </script>
