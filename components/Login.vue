@@ -1,7 +1,8 @@
 <script setup>
+import { useQuasar } from 'quasar'
 let nume=ref('')
 let parola=ref('')
-
+const $q = useQuasar()
 async function login(){
 
   let response=  await $fetch("/api/place/autentificare", {
@@ -20,6 +21,11 @@ async function login(){
         navigateTo("../place")
       }
       else {
+        $q.notify({
+          type: 'negative',
+          position:'top',
+          message: 'Autentificare esuata !'
+        })
          nume.value=""
          parola.value=""
       }
