@@ -10,7 +10,11 @@ async function salveazaUtilizator(){
         headers: {
          
         },
-        body: {},
+        body: {
+          nume:nume.value,
+          parola:parola.value,
+          admin:eAdmin.value
+        },
       });
   navigateTo("../place")
 }
