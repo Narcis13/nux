@@ -1,0 +1,3 @@
+- quasar $q notify
+
+= pinia autentificat ? si in functia de asta place arata gol sau cu inbox
