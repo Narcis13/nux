@@ -1,5 +1,8 @@
 <script setup>
 import { useQuasar } from 'quasar'
+import { useUtilizatorStore } from '~/stores/userStore';
+
+const utilizatorStore = useUtilizatorStore();
 let nume=ref('')
 let parola=ref('')
 const $q = useQuasar()
@@ -18,6 +21,9 @@ async function login(){
       });
       console.log('Raspuns de la autentificare',response)
       if(response.succes){
+        utilizatorStore.setUtilizator(response.utilizator)
+        utilizatorStore.setELogat()
+        if(response.utilizator.e_admin) utilizatorStore.setEAdmin()
         navigateTo("../place")
       }
       else {
