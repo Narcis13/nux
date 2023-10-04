@@ -1,17 +1,18 @@
 <script setup>
 let splitterModel = ref(15)
 let link=ref('inbox')
+const showMesajNou=ref(false)
 </script>
 
 <template>
-     <div class="flex flex-center" style="width:90vw">
+     <div class="q-pa-md" style="width:1200px">
     <q-splitter
       v-model="splitterModel"
       style="height: 90vh"
     >
 
       <template v-slot:before>
-        <div class="q-pa-md" style="max-width: 250px">
+        <div class="q-pa-md" style="max-width:250px">
     <q-list bordered padding class="rounded-borders text-primary">
       <q-item
         clickable
@@ -52,7 +53,7 @@ let link=ref('inbox')
           <q-icon name="delete" />
         </q-item-section>
 
-        <q-item-section>Trash</q-item-section>
+        <q-item-section>Gunoi</q-item-section>
       </q-item>
 
       <q-separator spaced />
@@ -85,16 +86,43 @@ let link=ref('inbox')
         <q-item-section>Help</q-item-section>
       </q-item>
     </q-list>
+    <br>
+    <div class="q-pa-sm">
+      <q-btn icon="add" label="Mesaj nou.." stack glossy color="black" @click="showMesajNou=true"/>
+    </div>
+
   </div>
       </template>
 
       <template v-slot:after>
         <div class="q-pa-md">
-          <div class="text-h4 q-mb-md">After</div>
-          <div v-for="n in 40" :key="n" class="q-my-md">{{ n }}. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</div>
+          <mail-inbox v-if="link==='inbox'" />
+           <mail-outbox v-if="link==='outbox'" />
         </div>
       </template>
 
     </q-splitter>
   </div>
+
+  <q-dialog v-model="showMesajNou" persistent transition-show="flip-down" transition-hide="flip-up">
+    <q-card>
+        <q-card-section class="row items-center q-pb-none">
+          <div class="text-h6">Close icon</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+
+        <q-card-section>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit voluptate voluptas eveniet porro. Rerum blanditiis perferendis totam, ea at omnis vel numquam exercitationem aut, natus minima, porro labore.
+        </q-card-section>
+      </q-card>
+    </q-dialog>
 </template>
+
+<style >
+.my-menu-link {
+  color: white;
+  background: #F2C037;
+}
+
+</style>
