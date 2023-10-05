@@ -104,18 +104,8 @@ const showMesajNou=ref(false)
     </q-splitter>
   </div>
 
-  <q-dialog v-model="showMesajNou" persistent transition-show="flip-down" transition-hide="flip-up">
-    <q-card>
-        <q-card-section class="row items-center q-pb-none">
-          <div class="text-h6">Close icon</div>
-          <q-space />
-          <q-btn icon="close" flat round dense v-close-popup />
-        </q-card-section>
-
-        <q-card-section>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit voluptate voluptas eveniet porro. Rerum blanditiis perferendis totam, ea at omnis vel numquam exercitationem aut, natus minima, porro labore.
-        </q-card-section>
-      </q-card>
+    <q-dialog v-model="showMesajNou" persistent transition-show="flip-down" transition-hide="flip-up">
+      <mail-new-message />
     </q-dialog>
 </template>
 
