@@ -1,12 +1,24 @@
 <script setup>
 const stringOptions = [
-  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+ 
 ]
-  const options = ref(stringOptions)
+  const adresemail = ref([])
+  const subiect = ref('')
+  const mesaj = ref('')
     
    const   catre= ref(null)
     let toateadresele =   await $fetch("/api/place/mail/toateadresele")
     console.log('toate adresele',toateadresele) 
+    toateadresele.map(a=>{
+      adresemail.value.push({
+        label:a.numeadresa,
+        value:a.id
+      })
+      stringOptions.push({
+        label:a.numeadresa,
+        value:a.id
+      })
+    })
    function   filterFn (val, update, abort) {
         if (val.length < 2) {
           abort()
@@ -15,10 +27,13 @@ const stringOptions = [
 
         update(() => {
           const needle = val.toLowerCase()
-          options.value = stringOptions.filter(v => v.toLowerCase().indexOf(needle) > -1)
+          adresemail.value = stringOptions.filter(v => v.label.toLowerCase().indexOf(needle) > -1)
         })
       }
     
+    function trimiteMail(){
+      console.log('trimite mail cu datele',{catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value})
+    }
 </script>
 
 
@@ -40,7 +55,7 @@ const stringOptions = [
                         hide-selected
                         fill-input
                         input-debounce="0"
-                        :options="options"
+                        :options="adresemail"
                         @filter="filterFn"
                         hint="Minimum 2 characters to trigger filtering"
                         style="width: 350px; padding-bottom: 32px"
@@ -54,15 +69,16 @@ const stringOptions = [
                         </template>
                 </q-select>
 
-                <q-input  class="q-mb-md" filled label="Subiect"  />
+                <q-input v-model="subiect" class="q-mb-md" filled label="Subiect"  />
                 <q-input
                 class="q-mb-md"
                     label="Mesaj"
                     filled
                     type="textarea"
+                    v-model="mesaj"
                     />
 
-                    <q-btn color="grey-4" text-color="purple" glossy unelevated icon="camera_enhance" label="Trimite" />
+                    <q-btn color="grey-4" text-color="purple" glossy unelevated icon="camera_enhance" label="Trimite" @click="trimiteMail"/>
             </div>
         </q-card-section>
       </q-card>
