@@ -30,3 +30,16 @@ model utilizatoriplace {
   updated_at     DateTime?        @updatedAt
 
 }
+
+model mesaje {
+  id              Int              @id @default(autoincrement())
+  id_expeditor    Int
+  id_destinatar   Int
+  subiect         String           @db.VarChar(255)
+  mesaj           String           @db.VarChar(4000)
+  stare           String           @db.VarChar(24) @default("activ")
+  created_at      DateTime         @default(now()) @db.DateTime(0)
+  deleted_at      DateTime?        @db.DateTime(0)
+  updated_at      DateTime?        @updatedAt
+  
+}

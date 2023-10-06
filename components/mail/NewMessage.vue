@@ -1,4 +1,8 @@
 <script setup>
+import { useUtilizatorStore } from '~/stores/userStore';
+import { useQuasar } from 'quasar'
+const utilizatorStore = useUtilizatorStore();
+const $q = useQuasar()
 const stringOptions = [
  
 ]
@@ -31,8 +35,28 @@ const stringOptions = [
         })
       }
     
-    function trimiteMail(){
-      console.log('trimite mail cu datele',{catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value})
+   async function trimiteMail(){
+    //  console.log('trimite mail cu datele',{dela:utilizatorStore.utilizator.id,catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value})
+    let response=  await $fetch("/api/place/mail/mesajnou", {
+        method: "POST",
+        headers: {
+         
+        },
+        body: {
+          id_expeditor:utilizatorStore.utilizator.id,
+          id_destinatar:catre.value.value,
+          subiect:subiect.value,
+          mesaj:mesaj.value
+        },
+      });
+     console.log('am ttrimis mail si am primit...',response)
+      if(response.mesaj==="OK"){
+        $q.notify({
+          type: 'positive',
+          position:'top',
+          message: 'Mesaj trimis !'
+        })
+      }
     }
 </script>
 
