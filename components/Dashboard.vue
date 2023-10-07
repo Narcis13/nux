@@ -2,6 +2,10 @@
 let splitterModel = ref(15)
 let link=ref('inbox')
 const showMesajNou=ref(false)
+function mesajTrimis(){
+  console.log('mesaj trimis')
+  showMesajNou.value=false
+}
 </script>
 
 <template>
@@ -105,7 +109,7 @@ const showMesajNou=ref(false)
   </div>
 
     <q-dialog v-model="showMesajNou" persistent transition-show="flip-down" transition-hide="flip-up">
-      <mail-new-message />
+      <mail-new-message @mesaj-trimis="mesajTrimis"/>
     </q-dialog>
 </template>
 

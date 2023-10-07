@@ -1,7 +1,9 @@
 <script setup>
 import { useUtilizatorStore } from '~/stores/userStore';
 import { useQuasar } from 'quasar'
+
 const utilizatorStore = useUtilizatorStore();
+const emits=defineEmits(['mesaj-trimis'])
 const $q = useQuasar()
 const stringOptions = [
  
@@ -36,6 +38,8 @@ const stringOptions = [
       }
     
    async function trimiteMail(){
+
+   
     //  console.log('trimite mail cu datele',{dela:utilizatorStore.utilizator.id,catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value})
     let response=  await $fetch("/api/place/mail/mesajnou", {
         method: "POST",
@@ -51,6 +55,7 @@ const stringOptions = [
       });
      console.log('am ttrimis mail si am primit...',response)
       if(response.mesaj==="OK"){
+        emits('mesaj-trimis')
         $q.notify({
           type: 'positive',
           position:'top',
