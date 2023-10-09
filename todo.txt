@@ -1,0 +1,3 @@
+SELECT e.numeadresa as expeditor,d.numeadresa as destinatar FROM place.mesaje m
+inner join utilizatoriplace e on e.id=m.id_expeditor 
+inner join utilizatoriplace d on d.id=m.id_destinatar ;
