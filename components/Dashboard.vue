@@ -92,7 +92,7 @@ function mesajTrimis(){
     </q-list>
     <br>
     <div class="q-pa-sm">
-      <q-btn icon="add" label="Mesaj nou.." stack glossy color="black" @click="showMesajNou=true"/>
+      <q-btn icon="add" label="Mesaj nou.." stack glossy color="black" text-color="amber-2" @click="showMesajNou=true"/>
     </div>
 
   </div>

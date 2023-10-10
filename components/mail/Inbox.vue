@@ -1,29 +1,38 @@
 <script setup>
+import { useUtilizatorStore } from '~/stores/userStore';
+const utilizatorStore = useUtilizatorStore();
 const columns = [
   
   { name: 'ziua', align: 'center', label: 'Ziua', field: 'ziua', sortable: true },
   { name: 'ora',align: 'center', label: 'Ora', field: 'ora', sortable: true },
   { name: 'expeditor', align: 'center', label: 'Expeditor', field: 'expeditor' },
-  { name: 'subiect', label: 'Subiect', field: 'subiect' }
+  { name: 'subiect', label: 'Subiect', field: 'subiect' ,align:'left'}
 
 ]
 
 async function toateMesajele(){
 
-  let {data} =   await useFetch("/api/place/mail/toatemesajele")
-  console.log(data)
+  let data =   await $fetch("/api/place/mail/toatemesajele?iddestinatar="+utilizatorStore.utilizator.id)
+ // console.log(data)
   return data;
 }
 
 
 // we generate lots of rows here
-let rows = []
+let rows = ref([])
 let ms=toateMesajele()
+ms.then(r=>{
+    console.log(r)
+    r.map(m=>{
+        rows.value.push(m)
+    })
+    
+})
 console.log('toate mesajele',ms)
-ms.map(m=>{
+/*ms.map(m=>{
   rows.push(m)
 })
-
+*/
 const pagination= ref({
         rowsPerPage: 0
       })
@@ -60,7 +69,7 @@ function clickpemail(e,r,i){
   .q-table__top,
   .q-table__bottom,
   thead tr:first-child th {
-    color:bisque ;
+    color:rgb(238, 222, 203) ;
     background-color: #021c28;
   }
    
