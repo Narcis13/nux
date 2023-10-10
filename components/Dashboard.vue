@@ -9,14 +9,14 @@ function mesajTrimis(){
 </script>
 
 <template>
-     <div class="q-pa-md" style="width:1200px">
+     <div class="q-pa-md" style="width:1800px">
     <q-splitter
       v-model="splitterModel"
-      style="height: 90vh"
+      style="height: 90vh;"
     >
 
       <template v-slot:before>
-        <div class="q-pa-md" style="max-width:250px">
+        <div class="q-pa-md" style="max-width:450px">
     <q-list bordered padding class="rounded-borders text-primary">
       <q-item
         clickable

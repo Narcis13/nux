@@ -17,7 +17,7 @@ async function toateMesajele(){
   return data;
 }
 
-
+let mail_curent = ref(-1)
 // we generate lots of rows here
 let rows = ref([])
 let ms=toateMesajele()
@@ -38,11 +38,12 @@ const pagination= ref({
       })
 
 function clickpemail(e,r,i){
-    console.log('click pe mail',e,r,i)
+    console.log('click pe mail',r.id)
+    mail_curent.value=i
 }      
 </script>
 <template>
-    <div class="q-pa-md">
+    <div class="q-pa-md row items-start q-gutter-md">
     <q-table
       class="my-sticky-virtscroll-table"
       @row-click="clickpemail"
@@ -56,15 +57,38 @@ function clickpemail(e,r,i){
       :rows="rows"
       :columns="columns"
     />
+    <q-card v-if="mail_curent>=0" class="my-card bg-grey-9 text-white">
+      <q-card-section>
+        <div class="text-h6">Our Changing Planet</div>
+        <div class="text-subtitle2">by John Doe</div>
+      </q-card-section>
+
+      <q-card-section>
+        fadsfasdfasdf asdfasd fasd fasd fa sdfasdfasdfasdfasdfasdf sfdsdf {{ mail_curent }}
+      </q-card-section>
+
+      <q-separator dark />
+
+      <q-card-actions>
+        <q-btn flat>Action 1</q-btn>
+        <q-btn flat>Action 2</q-btn>
+      </q-card-actions>
+    </q-card>
   </div>
 </template>
 
 <style >
+.my-card {
+  width: 100%;
+  max-width: 500px;
+}
 .my-sticky-virtscroll-table {
   /* height or max-height is important */
   height: 90vh;
 }
-
+ .q-table__container{
+  width:800px;
+ }
 
   .q-table__top,
   .q-table__bottom,
