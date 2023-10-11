@@ -20,6 +20,6 @@ export default defineEventHandler(async (event) =>{
         
       });
 
-  //console.log("Mesaj nou",body)
+  console.log("Mesaj nou",body)
     return {mesaj:"OK"}
 })

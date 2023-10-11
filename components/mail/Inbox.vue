@@ -59,15 +59,24 @@ function clickpemail(e,r,i){
     />
     <q-card v-if="mail_curent>=0" class="my-card bg-grey-9 text-white">
       <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
+        <div class="text-h6">{{ rows[mail_curent].expeditor }}</div>
+        <div class="text-subtitle2">{{ rows[mail_curent].ziua }} : {{rows[mail_curent].ora}} </div>
       </q-card-section>
 
       <q-card-section>
-        fadsfasdfasdf asdfasd fasd fasd fa sdfasdfasdfasdfasdfasdf sfdsdf {{ mail_curent }}
+        <div class="text-h5">
+         Subiect: {{ rows[mail_curent].subiect }} 
+        </div>
+     
       </q-card-section>
 
       <q-separator dark />
+      <q-card-section>
+        <div class="display-linebreak text-h6">
+          {{ rows[mail_curent].mesaj }} 
+        </div>
+     
+      </q-card-section>
 
       <q-card-actions>
         <q-btn flat>Action 1</q-btn>
@@ -78,6 +87,10 @@ function clickpemail(e,r,i){
 </template>
 
 <style >
+.display-linebreak {
+  white-space: pre-line;
+}
+
 .my-card {
   width: 100%;
   max-width: 500px;

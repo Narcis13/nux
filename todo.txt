@@ -2,3 +2,5 @@ SELECT m.id ,m.created_at,date_format(m.created_at, '%d/%m/%Y') as ziua,date_for
 inner join utilizatoriplace e on e.id=m.id_expeditor 
 inner join utilizatoriplace d on d.id=m.id_destinatar 
 order by m.created_at desc;
+
+aaaaa bbbbb

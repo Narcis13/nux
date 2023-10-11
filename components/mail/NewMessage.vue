@@ -53,7 +53,7 @@ const stringOptions = [
           mesaj:mesaj.value
         },
       });
-     console.log('am ttrimis mail si am primit...',response)
+     console.log('am ttrimis mail si am primit...',mesaj.value)
       if(response.mesaj==="OK"){
         emits('mesaj-trimis')
         $q.notify({
