@@ -106,7 +106,12 @@ const stringOptions = [
                     type="textarea"
                     v-model="mesaj"
                     />
-
+                    <q-uploader
+                      label="Ataseaza fisiere"
+                      auto-upload
+                      url="api/place/upload"
+                      multiple
+                    />
                     <q-btn color="grey-4" text-color="purple" glossy unelevated icon="camera_enhance" label="Trimite" @click="trimiteMail"/>
             </div>
         </q-card-section>
