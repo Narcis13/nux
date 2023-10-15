@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) =>{
     const body = await readBody(event);
+   // console.log('Body mesaj nou',body)
     await prisma.mesaje.create({
         data:{
           id_expeditor:body.id_expeditor,
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) =>{
       
         }
       }).then(async (response) => {
-       
+         console.log('then prisma.mesaje.create')
       })
       .catch(async (e) => {
         console.error(e);

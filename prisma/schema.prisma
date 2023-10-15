@@ -33,6 +33,7 @@ model utilizatoriplace {
 
 model mesaje {
   id              Int              @id @default(autoincrement())
+  atasamente      atasamentemesaje[]
   id_expeditor    Int
   id_destinatar   Int
   subiect         String           @db.VarChar(255)
@@ -46,6 +47,7 @@ model mesaje {
 
 model atasamente {
    id              Int              @id @default(autoincrement())
+   mesaje          atasamentemesaje[]
     original_name         String           @db.VarChar(255)
      filename         String           @db.VarChar(255)
          filepath        String           @db.VarChar(255)
@@ -54,3 +56,12 @@ model atasamente {
         created_at      DateTime         @default(now()) @db.DateTime(0)
         size            Int 
 }
+
+model atasamentemesaje {
+    id              Int              @id @default(autoincrement())
+    mesaj         mesaje?    @relation(fields: [mesaj_id], references: [id], onDelete: Cascade)
+  mesaj_id      Int
+      atasament         atasamente?    @relation(fields: [atasament_id], references: [id], onDelete: Cascade)
+  atasament_id      Int
+}
+

@@ -46,7 +46,7 @@ const stringOptions = [
    async function trimiteMail(){
 
    
-      console.log('trimite mail cu datele',{dela:utilizatorStore.utilizator.id,catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value},iduri_atasamente.value)
+     // console.log('trimite mail cu datele',{dela:utilizatorStore.utilizator.id,catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value},iduri_atasamente.value)
     let response=  await $fetch("/api/place/mail/mesajnou", {
         method: "POST",
         headers: {
@@ -56,10 +56,11 @@ const stringOptions = [
           id_expeditor:utilizatorStore.utilizator.id,
           id_destinatar:catre.value.value,
           subiect:subiect.value,
-          mesaj:mesaj.value
+          mesaj:mesaj.value,
+          atasamente:iduri_atasamente.value
         },
       });
-     console.log('am ttrimis mail si am primit...',mesaj.value)
+   //  console.log('am ttrimis mail si am primit...',mesaj.value)
       if(response.mesaj==="OK"){
         emits('mesaj-trimis')
         $q.notify({
