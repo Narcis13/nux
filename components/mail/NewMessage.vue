@@ -9,6 +9,7 @@ const stringOptions = [
  
 ]
   const adresemail = ref([])
+  const iduri_atasamente = ref([])
   const subiect = ref('')
   const mesaj = ref('')
     
@@ -37,10 +38,15 @@ const stringOptions = [
         })
       }
     
+   function fisierUrcat(info){
+     let r= JSON.parse(info.files[0].xhr.response)
+     iduri_atasamente.value.push(r.raspuns.id)
+   }
+
    async function trimiteMail(){
 
    
-    //  console.log('trimite mail cu datele',{dela:utilizatorStore.utilizator.id,catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value})
+      console.log('trimite mail cu datele',{dela:utilizatorStore.utilizator.id,catre:catre.value.value,subiect:subiect.value,mesaj:mesaj.value},iduri_atasamente.value)
     let response=  await $fetch("/api/place/mail/mesajnou", {
         method: "POST",
         headers: {
@@ -109,8 +115,10 @@ const stringOptions = [
                     <q-uploader
                       label="Ataseaza fisiere"
                       auto-upload
+                      field-name="atasament"
                       url="api/place/upload"
                       multiple
+                      @uploaded="fisierUrcat"
                     />
                     <q-btn color="grey-4" text-color="purple" glossy unelevated icon="camera_enhance" label="Trimite" @click="trimiteMail"/>
             </div>

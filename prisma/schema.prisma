@@ -43,3 +43,14 @@ model mesaje {
   updated_at      DateTime?        @updatedAt
   
 }
+
+model atasamente {
+   id              Int              @id @default(autoincrement())
+    original_name         String           @db.VarChar(255)
+     filename         String           @db.VarChar(255)
+         filepath        String           @db.VarChar(255)
+     new_name         String           @db.VarChar(255)
+      mimetype         String           @db.VarChar(255)
+        created_at      DateTime         @default(now()) @db.DateTime(0)
+        size            Int 
+}
