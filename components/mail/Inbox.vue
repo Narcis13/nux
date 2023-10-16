@@ -6,7 +6,8 @@ const columns = [
   { name: 'ziua', align: 'center', label: 'Ziua', field: 'ziua', sortable: true },
   { name: 'ora',align: 'center', label: 'Ora', field: 'ora', sortable: true },
   { name: 'expeditor', align: 'center', label: 'Expeditor', field: 'expeditor' },
-  { name: 'subiect', label: 'Subiect', field: 'subiect' ,align:'left'}
+  { name: 'subiect', label: 'Subiect', field: 'subiect' ,align:'left'},
+  { name: 'atasamente', label: 'Fisiere atasate', field: 'atasamente' ,align:'center'}
 
 ]
 
@@ -28,7 +29,7 @@ ms.then(r=>{
     })
     
 })
-console.log('toate mesajele',ms)
+//console.log('toate mesajele',ms)
 /*ms.map(m=>{
   rows.push(m)
 })
@@ -38,7 +39,7 @@ const pagination= ref({
       })
 
 function clickpemail(e,r,i){
-    console.log('click pe mail',r.id)
+    console.log('click pe mail',r.id,rows.value[i].atasamente,rows.value[i].id)
     mail_curent.value=i
 }      
 </script>
