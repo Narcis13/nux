@@ -19,6 +19,8 @@ async function toateMesajele(){
 }
 
 let mail_curent = ref(-1)
+let atasamente_mail_curent = ref([])
+
 // we generate lots of rows here
 let rows = ref([])
 let ms=toateMesajele()
@@ -38,8 +40,12 @@ const pagination= ref({
         rowsPerPage: 0
       })
 
-function clickpemail(e,r,i){
-    console.log('click pe mail',r.id,rows.value[i].atasamente,rows.value[i].id)
+async function clickpemail(e,r,i){
+  atasamente_mail_curent.value=[]
+    if(rows.value[i].atasamente>0){
+      atasamente_mail_curent.value=await $fetch("/api/place/mail/atasamentemesaj?idmesaj="+r.id)
+    }
+    console.log('click pe mail',atasamente_mail_curent.value)
     mail_curent.value=i
 }      
 </script>
