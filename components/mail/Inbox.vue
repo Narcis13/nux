@@ -40,6 +40,14 @@ const pagination= ref({
         rowsPerPage: 0
       })
 
+function download_atasament(a){
+  console.log('download ',a)
+  /*const link = document.createelement('a')
+      link.href = a.new_name
+      link.download = a.original_name
+      link.target = '_blank'
+      link.click()*/
+}      
 async function clickpemail(e,r,i){
   atasamente_mail_curent.value=[]
     if(rows.value[i].atasamente>0){
@@ -81,6 +89,17 @@ async function clickpemail(e,r,i){
       <q-card-section>
         <div class="display-linebreak text-h6">
           {{ rows[mail_curent].mesaj }} 
+        </div>
+     
+      </q-card-section>
+
+      <q-card-section v-if="atasamente_mail_curent.length>0">
+        <div >
+           <p>Fisiere atasatate:</p>
+           <q-chip v-for="atasament in atasamente_mail_curent" clickable :key="atasament.original_name" @click="download_atasament(atasament)">
+                 <q-avatar icon="bookmark" color="red" text-color="white"></q-avatar>
+                 {{ atasament.original_name }}
+             </q-chip>
         </div>
      
       </q-card-section>

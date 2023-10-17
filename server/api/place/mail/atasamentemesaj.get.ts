@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) =>{
 
 
 return await prisma.$queryRaw`
-SELECT a.original_name,a.new_name,a.mimetype,a.size,a.filename,a.filepath FROM whole.mesaje m
+SELECT a.original_name,a.new_name,a.mimetype,a.size,a.filename,a.filepath FROM mesaje m
 inner join atasamentemesaje am on am.mesaj_id=m.id
 inner join atasamente a on a.id=am.atasament_id
 where m.id=${query.idmesaj};
