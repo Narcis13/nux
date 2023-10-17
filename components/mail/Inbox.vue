@@ -41,12 +41,12 @@ const pagination= ref({
       })
 
 function download_atasament(a){
-  console.log('download ',a)
-  /*const link = document.createelement('a')
+  console.log('download ',a,window)
+  const link = window.document.createElement('a')
       link.href = a.new_name
       link.download = a.original_name
       link.target = '_blank'
-      link.click()*/
+      link.click()
 }      
 async function clickpemail(e,r,i){
   atasamente_mail_curent.value=[]
