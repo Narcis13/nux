@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event) =>{
   const query = getQuery(event)
 
-//console.log(__dirname)
+//console.log(event)
 
 return sendStream(event, fs.createReadStream('./public/favicon.ico'))
 
