@@ -40,8 +40,9 @@ const pagination= ref({
         rowsPerPage: 0
       })
 
-function download_atasament(a){
+async function download_atasament(a){
   console.log('download ',a)
+  await $fetch("/api/place/mail/download?idatasament="+a.id)
   /*const link = window.document.createElement('a')
      // link.href = a.new_name
      link.href=a.filepath
