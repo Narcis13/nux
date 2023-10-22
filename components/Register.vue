@@ -16,7 +16,7 @@ async function salveazaUtilizator(){
           admin:eAdmin.value
         },
       });
-  navigateTo("../place")
+  navigateTo("./")
 }
 </script>
 

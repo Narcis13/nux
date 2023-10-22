@@ -5,10 +5,13 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) =>{
   const query = getQuery(event)
-
-//console.log(event)
-
-return sendStream(event, fs.createReadStream('./public/favicon.ico'))
+const a = await prisma.atasamente.findFirst({
+  where: {
+    id: parseInt(query.idatasament),
+  },
+})
+//console.log(a)
+return sendStream(event, fs.createReadStream(a?.filename))
 
 /*
 return await prisma.$queryRaw`

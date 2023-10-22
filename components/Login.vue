@@ -24,7 +24,7 @@ async function login(){
         utilizatorStore.setUtilizator(response.utilizator)
         utilizatorStore.setELogat()
         if(response.utilizator.e_admin) utilizatorStore.setEAdmin()
-        navigateTo("../place")
+        navigateTo("./")
       }
       else {
         $q.notify({

@@ -1,1 +1,9 @@
 - Eroare la ora primirii mesajului ...e cu 3 ore defazat
+
+
+Pentru 0.2 {
+    - outbox
+    =Loc in interfata pentru Rapoarte
+    -o forma incipienta pentru places... eventual doar interfata
+    - mici reglaje pe partea de style
+}

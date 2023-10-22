@@ -9,18 +9,20 @@ export default defineEventHandler(async (event) => {
 
   const [fields,files] = await form.parse(event.node.req)
   //console.log(files)
-  var fisier=null;
+
 //  if (Array.isArray(files.atasament)) {
   //  files.atasament.forEach(( file) => {
-      const fileName = `./public/${files.atasament[0].originalFilename}`;
+     
       const file=files.atasament[0]
+      const fileName = `./public/${file.newFilename+'_'+files.atasament[0].originalFilename}`;
+      fs.rename(file.filepath, fileName, (err) => console.log(err));
    //  console.log(fileName)
  await   prisma.atasamente.create({
       data:{
         original_name   : file.originalFilename,
         filename :fileName,
             filepath     :file.filepath,
-        new_name   :    file.newFilename, 
+        new_name   :    file.newFilename+'_'+file.originalFilename, 
          mimetype    :    file.mimetype,
           
            size        : file.size

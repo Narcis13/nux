@@ -1,3 +1,18 @@
+<script setup>
+import { useUtilizatorStore } from '~/stores/userStore';
+
+const utilizatorStore = useUtilizatorStore();
+
+
+
+</script>
+
 <template>
-    <h1>Bifa Suite</h1>
+    <div class="flex " style="width:1800px">
+        <Dashboard  v-if="utilizatorStore.eLogat"/>
+        <h3 v-if="!utilizatorStore.eLogat">Place v 0.1</h3>
+    
+    </div>
+  
+
 </template>

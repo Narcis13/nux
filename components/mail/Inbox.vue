@@ -41,14 +41,23 @@ const pagination= ref({
       })
 
 async function download_atasament(a){
-  console.log('download ',a)
-  await $fetch("/api/place/mail/download?idatasament="+a.id)
-  /*const link = window.document.createElement('a')
-     // link.href = a.new_name
-     link.href=a.filepath
-      link.download = a.original_name
-      link.target = '_blank'
-      link.click()(*/
+  
+ const f= await $fetch("/api/place/mail/download?idatasament="+a.id)
+ console.log('download ',a,f)
+ const fisier = new Blob([f], { type: a.mimetype})
+            const zipFileName = a.original_name
+
+            const link = document.createElement('a')
+            link.href = URL.createObjectURL(fisier)
+            link.download = zipFileName
+
+            link.click()
+  // const link = window.document.createElement('a')
+  //     link.href = '../'+a.new_name
+  //    //link.href=a.filepath
+  //     link.download = a.original_name
+  //     link.target = '_blank'
+  //     link.click()
 }      
 async function clickpemail(e,r,i){
   atasamente_mail_curent.value=[]
@@ -98,10 +107,14 @@ async function clickpemail(e,r,i){
       <q-card-section v-if="atasamente_mail_curent.length>0">
         <div >
            <p>Fisiere atasatate:</p>
-           <q-chip v-for="atasament in atasamente_mail_curent" clickable :key="atasament.original_name" @click="download_atasament(atasament)">
+           <div class="q-pa-md">
+             <a v-for="a in atasamente_mail_curent" :href="'/'+a.new_name" target="_blank" :download="a.original_name" style="color:aliceblue">{{ a.original_name }}</a>
+           </div>
+          <!-- <a href="../test.txt" target="_blank" download="kiki.txt" style="color:aliceblue">Link</a>   -->
+          <!-- <q-chip v-for="atasament in atasamente_mail_curent" clickable :key="atasament.original_name" @click="download_atasament(atasament)">
                  <q-avatar icon="bookmark" color="red" text-color="white"></q-avatar>
                  {{ atasament.original_name }}
-             </q-chip>
+             </q-chip>   -->
         </div>
      
       </q-card-section>
