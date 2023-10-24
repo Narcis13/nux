@@ -5,6 +5,9 @@ export default defineNuxtConfig({
     'nuxt-quasar-ui',
     '@pinia/nuxt'
   ],
+  build:{
+    transpile:['knex']
+  },
   quasar:{
     plugins: [
       'Notify',
