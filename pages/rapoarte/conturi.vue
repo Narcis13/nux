@@ -1,7 +1,9 @@
 <script setup>
 import {useRaportConturiStore} from '~/stores/raportConturiStore'
 const setDateStore = useRaportConturiStore()
-
+definePageMeta({
+    layout:'rapoarte'
+})
 </script>
 
 <template>
