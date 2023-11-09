@@ -23,7 +23,7 @@
 <script setup>
 const config = useRuntimeConfig()
 let host= config.public.placeHost
-//console.log('Host: ',config.public.placeHost)
+console.log('Host: ',config.public.placeHost)
 
 let systemPrompt=ref('You are an excellent accountant and look at receipts and invoices to aknowledge what the client bought.')
 let userPrompt = ref('Make a comma separated text with vendor name, date, total amount spent, payment method (cash or card) and nothing else!')
