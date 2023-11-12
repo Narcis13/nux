@@ -19,10 +19,12 @@
     "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "5.3.1",
     "@quasar/extras": "^1.16.6",
+    "colors": "^1.4.0",
     "formidable": "^3.5.1",
     "knex": "^3.0.1",
     "mysql2": "^3.6.2",
     "openai": "^4.16.1",
-    "quasar": "^2.12.7"
+    "quasar": "^2.12.7",
+    "readline-sync": "^1.4.10"
   }
 }
