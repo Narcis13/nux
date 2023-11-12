@@ -1,7 +1,7 @@
 <template>
    <div class="flex flex-center q-pa-md">
 
-        <div class="q-gutter-y-md column " style="max-width: 500px">
+        <div class="q-gutter-y-md column q-mb-md" style="max-width: 500px">
              <h5>Ce e in poza?</h5>
          
              <q-uploader
@@ -12,10 +12,13 @@
 
                       @uploaded="fisierUrcat"
                     />
-            <q-input style="width: 450px;" v-model="systemPrompt" type="textarea" filled color="purple-12"  label="Sistem" />
-            <q-input style="width: 450px;" v-model="userPrompt" type="textarea" filled color="purple-12"  label="Utilizator"  />
+            <q-input style="width: 300px;" v-model="systemPrompt" type="textarea" filled color="purple-12"  label="Sistem" />
+            <q-input style="width: 300px;" v-model="userPrompt" type="textarea" filled color="purple-12"  label="Utilizator"  />
  
             <q-btn color="primary" label="Intreaba !"  @click="intreaba"/>
+            <div class="text-body1 q-mt=md" style="max-width: 400px;">
+            {{ raspuns }}
+             </div>
         </div>
 
     </div>
@@ -24,13 +27,14 @@
 const config = useRuntimeConfig()
 let host= config.public.placeHost
 console.log('Host: ',config.public.placeHost)
-
+let raspuns=ref("")
 let systemPrompt=ref('You are an excellent accountant and look at receipts and invoices to aknowledge what the client bought.')
 let userPrompt = ref('Make a comma separated text with vendor name, date, total amount spent, payment method (cash or card) and nothing else!')
 let url_fisier=ref('')
+
 function fisierUrcat(info){
     let r= JSON.parse(info.files[0].xhr.response)
-    url_fisier.value=host+r.raspuns;
+    url_fisier.value=r.raspuns;
     console.log(r)
 }
 async function intreaba(){
@@ -45,6 +49,7 @@ async function intreaba(){
           url:url_fisier.value
         },
       });
-    console.log(res.raspuns)  
+      raspuns.value=res.raspuns
+   // console.log(res.raspuns)  
 }
 </script>
